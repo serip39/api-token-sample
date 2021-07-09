@@ -1,0 +1,32 @@
+version: "3"
+
+services:
+  backend:
+    container_name: sample-backend
+    build:
+      context: .
+      dockerfile: ./docker/ruby/Dockerfile
+    image: sample-backend-ruby
+    volumes:
+      - ./backend:/app
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
+    stdin_open: true
+    tty: true
+
+  db:
+    container_name: sample-db
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      TZ: Asia/Tokyo
+    ports:
+      - 3306:3306
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+volumes:
+  mysql-data:
