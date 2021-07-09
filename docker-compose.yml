@@ -9,6 +9,7 @@ services:
     image: sample-backend-ruby
     volumes:
       - ./backend:/app
+      - bundle_path:/usr/local/bundle
     ports:
       - 3000:3000
     depends_on:
@@ -30,3 +31,4 @@ services:
 
 volumes:
   mysql-data:
+  bundle_path:

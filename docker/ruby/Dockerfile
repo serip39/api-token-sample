@@ -26,4 +26,10 @@ ENV APP_ROOT /app
 RUN mkdir $APP_ROOT
 WORKDIR $APP_ROOT
 
+ENV LANG=ja_JP.UTF-8
+
+ADD ./backend/Gemfile $APP_ROOT/Gemfile
+ADD ./backend/Gemfile.lock $APP_ROOT/Gemfile.lock
+
+RUN bundle install
 COPY ./backend /app
