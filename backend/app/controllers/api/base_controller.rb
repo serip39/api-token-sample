@@ -1,6 +1,6 @@
 class Api::BaseController < ApplicationController
   before_action :split_tokens
-  before_action :authenticate_user!, unless: :devise_controller?
+  before_action :authenticate_api_v1_user!, unless: :devise_controller?
 
   private
     def split_tokens
